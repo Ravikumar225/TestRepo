@@ -8,6 +8,9 @@
 				"pipelineReference": {
 					"referenceName": "pipeline_Shesule",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"SourceFile": "@triggerBody().FileName"
 				}
 			}
 		],
