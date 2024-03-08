@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "raviramadf"
+		},
+		"AzureDataLstarget_accountKey": {
+			"value": ""
+		},
+		"AzureDatals1_accountKey": {
+			"value": ""
+		},
+		"AzureDataLstarget_properties_typeProperties_url": {
+			"value": "https://raviadls2.dfs.core.windows.net/"
+		},
+		"AzureDatals1_properties_typeProperties_url": {
+			"value": "https://raviadls2.dfs.core.windows.net/"
+		}
+	}
+}
