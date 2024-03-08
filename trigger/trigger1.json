@@ -1,0 +1,28 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Shedule_pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"SourceFile": "@triggerBody().FileName"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/source/blobs/emp",
+			"blobPathEndsWith": "csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/002839f2-7b91-4240-a575-65f3d4da3861/resourceGroups/ravitest/providers/Microsoft.Storage/storageAccounts/raviadls2",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
