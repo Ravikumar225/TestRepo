@@ -35,11 +35,11 @@
 			"type": "string",
 			"defaultValue": "https://raviadls2.dfs.core.windows.net/"
 		},
-		"Storageevent_properties_pipeline_Shesule_parameters_SourceFile": {
+		"trigger1_properties_Shedule_pipeline_parameters_SourceFile": {
 			"type": "string",
 			"defaultValue": "@triggerBody().FileName"
 		},
-		"Storageevent_properties_typeProperties_scope": {
+		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/002839f2-7b91-4240-a575-65f3d4da3861/resourceGroups/ravitest/providers/Microsoft.Storage/storageAccounts/raviadls2"
 		}
@@ -113,27 +113,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqldbtarget",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "data",
-					"table": "csv"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqldbtarget')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Parquet1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -155,50 +134,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLstarget')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sdataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDatals1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "source"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "eid",
-						"type": "String"
-					},
-					{
-						"name": " ename",
-						"type": "String"
-					},
-					{
-						"name": " eage",
-						"type": "String"
-					},
-					{
-						"name": " esalary",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDatals1')]"
 			]
 		},
 		{
@@ -246,7 +181,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sudataset')]",
+			"name": "[concat(parameters('factoryName'), '/Shdataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -255,9 +190,9 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"Filename": {
+					"FileName": {
 						"type": "string",
-						"defaultValue": "@pipeline().parameters.sourceFile"
+						"defaultValue": "@pipeline().parameters.sourcefile"
 					}
 				},
 				"annotations": [],
@@ -266,7 +201,7 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@dataset().Filename",
+							"value": "@dataset().FileName",
 							"type": "Expression"
 						},
 						"fileSystem": "source"
@@ -283,7 +218,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/targetdataset')]",
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -386,7 +321,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline_Shesule')]",
+			"name": "[concat(parameters('factoryName'), '/Shedule_pipeline')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -438,10 +373,10 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "sudataset",
+								"referenceName": "Shdataset",
 								"type": "DatasetReference",
 								"parameters": {
-									"Filename": {
+									"FileName": {
 										"value": "@pipeline().parameters.SourceFile",
 										"type": "Expression"
 									}
@@ -450,7 +385,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "targetdataset",
+								"referenceName": "DelimitedText1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -468,25 +403,25 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/sudataset')]",
-				"[concat(variables('factoryId'), '/datasets/targetdataset')]"
+				"[concat(variables('factoryId'), '/datasets/Shdataset')]",
+				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Storageevent')]",
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "pipeline_Shesule",
+							"referenceName": "Shedule_pipeline",
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"SourceFile": "[parameters('Storageevent_properties_pipeline_Shesule_parameters_SourceFile')]"
+							"SourceFile": "[parameters('trigger1_properties_Shedule_pipeline_parameters_SourceFile')]"
 						}
 					}
 				],
@@ -495,14 +430,14 @@
 					"blobPathBeginsWith": "/source/blobs/emp",
 					"blobPathEndsWith": "csv",
 					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('Storageevent_properties_typeProperties_scope')]",
+					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pipeline_Shesule')]"
+				"[concat(variables('factoryId'), '/pipelines/Shedule_pipeline')]"
 			]
 		}
 	]

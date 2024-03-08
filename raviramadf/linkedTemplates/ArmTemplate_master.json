@@ -35,11 +35,11 @@
 			"type": "string",
 			"defaultValue": "https://raviadls2.dfs.core.windows.net/"
 		},
-		"Storageevent_properties_pipeline_Shesule_parameters_SourceFile": {
+		"trigger1_properties_Shedule_pipeline_parameters_SourceFile": {
 			"type": "string",
 			"defaultValue": "@triggerBody().FileName"
 		},
-		"Storageevent_properties_typeProperties_scope": {
+		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/002839f2-7b91-4240-a575-65f3d4da3861/resourceGroups/ravitest/providers/Microsoft.Storage/storageAccounts/raviadls2"
 		},
@@ -91,11 +91,11 @@
 					"AzureDatals1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDatals1_properties_typeProperties_url')]"
 					},
-					"Storageevent_properties_pipeline_Shesule_parameters_SourceFile": {
-						"value": "[parameters('Storageevent_properties_pipeline_Shesule_parameters_SourceFile')]"
+					"trigger1_properties_Shedule_pipeline_parameters_SourceFile": {
+						"value": "[parameters('trigger1_properties_Shedule_pipeline_parameters_SourceFile')]"
 					},
-					"Storageevent_properties_typeProperties_scope": {
-						"value": "[parameters('Storageevent_properties_typeProperties_scope')]"
+					"trigger1_properties_typeProperties_scope": {
+						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
 					}
 				}
 			},
