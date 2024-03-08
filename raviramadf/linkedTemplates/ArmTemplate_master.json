@@ -11,17 +11,37 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLstarget'"
 		},
+		"AzureDataSEtg_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataSEtg'"
+		},
 		"AzureDatals1_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDatals1'"
 		},
+		"AzureSqldbtarget_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqldbtarget'"
+		},
 		"AzureDataLstarget_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raviadls2.dfs.core.windows.net/"
+		},
+		"AzureDataSEtg_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raviadls2.dfs.core.windows.net/"
 		},
 		"AzureDatals1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raviadls2.dfs.core.windows.net/"
+		},
+		"Storageevent_properties_pipeline_Shesule_parameters_SourceFile": {
+			"type": "string",
+			"defaultValue": "@triggerBody().FileName"
+		},
+		"Storageevent_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/002839f2-7b91-4240-a575-65f3d4da3861/resourceGroups/ravitest/providers/Microsoft.Storage/storageAccounts/raviadls2"
 		},
 		"containerUri": {
 			"type": "string",
@@ -53,14 +73,29 @@
 					"AzureDataLstarget_accountKey": {
 						"value": "[parameters('AzureDataLstarget_accountKey')]"
 					},
+					"AzureDataSEtg_accountKey": {
+						"value": "[parameters('AzureDataSEtg_accountKey')]"
+					},
 					"AzureDatals1_accountKey": {
 						"value": "[parameters('AzureDatals1_accountKey')]"
+					},
+					"AzureSqldbtarget_connectionString": {
+						"value": "[parameters('AzureSqldbtarget_connectionString')]"
 					},
 					"AzureDataLstarget_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLstarget_properties_typeProperties_url')]"
 					},
+					"AzureDataSEtg_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataSEtg_properties_typeProperties_url')]"
+					},
 					"AzureDatals1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDatals1_properties_typeProperties_url')]"
+					},
+					"Storageevent_properties_pipeline_Shesule_parameters_SourceFile": {
+						"value": "[parameters('Storageevent_properties_pipeline_Shesule_parameters_SourceFile')]"
+					},
+					"Storageevent_properties_typeProperties_scope": {
+						"value": "[parameters('Storageevent_properties_typeProperties_scope')]"
 					}
 				}
 			},

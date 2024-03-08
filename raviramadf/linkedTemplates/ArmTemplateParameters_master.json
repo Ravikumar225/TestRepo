@@ -8,14 +8,29 @@
 		"AzureDataLstarget_accountKey": {
 			"value": ""
 		},
+		"AzureDataSEtg_accountKey": {
+			"value": ""
+		},
 		"AzureDatals1_accountKey": {
+			"value": ""
+		},
+		"AzureSqldbtarget_connectionString": {
 			"value": ""
 		},
 		"AzureDataLstarget_properties_typeProperties_url": {
 			"value": "https://raviadls2.dfs.core.windows.net/"
 		},
+		"AzureDataSEtg_properties_typeProperties_url": {
+			"value": "https://raviadls2.dfs.core.windows.net/"
+		},
 		"AzureDatals1_properties_typeProperties_url": {
 			"value": "https://raviadls2.dfs.core.windows.net/"
+		},
+		"Storageevent_properties_pipeline_Shesule_parameters_SourceFile": {
+			"value": "@triggerBody().FileName"
+		},
+		"Storageevent_properties_typeProperties_scope": {
+			"value": "/subscriptions/002839f2-7b91-4240-a575-65f3d4da3861/resourceGroups/ravitest/providers/Microsoft.Storage/storageAccounts/raviadls2"
 		},
 		"containerUri": {
 			"value": ""
